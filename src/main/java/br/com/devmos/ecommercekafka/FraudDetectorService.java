@@ -14,6 +14,8 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 public class FraudDetectorService {
 	
 	public static void main(String[] args) {
+		
+		
 		KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<String, String>(properties());
 		
 		kafkaConsumer.subscribe(Collections.singletonList("ECOMMERCE_NEW_ORDER"));
@@ -26,6 +28,7 @@ public class FraudDetectorService {
 			}
 			
 			for (ConsumerRecord record : records) {
+				
 				System.out.println("-----------------------------------------------------------------");
 				System.out.println("Processsing new order, checking for fraude");
 				System.out.println(record.key());
@@ -33,7 +36,6 @@ public class FraudDetectorService {
 				System.out.println(record.partition());
 				System.out.println(record.offset());
 
-				
 				try {
 					Thread.sleep(5000);
 				}catch(InterruptedException e) {
